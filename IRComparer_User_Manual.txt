@@ -1,0 +1,45 @@
+Aaron B. League, 11/17/2016
+
+
+IR COMPARER PROTOTYPE
+
+This is a preliminary version of the software, which has the basic function of allowing the user visually to compare between IR spectra from theory and experiment. Files can be read from the user's personal computer, or can be read from the broader database stored on the Open Science Framework.
+
+
+BASIC INSTRUCTIONS:
+
+Upon starting the software, the user will be prompted to enter their OSF credentials. The authorization window will remain active until credentials are entered or the "work offline" box is checked. OSF credentials can be entered at any time in offline mode by selecting File > Enter OSF User ID.
+
+Files can be opened locally or via the OSF by selecting File > Open (local) or File > Open (OSF), respectively. Local file names must be searched for manually, but files on the database can be culled by applicable parameters in the download window.
+
+Upload files to the repository by selecting File > Upload (OSF). A value must be selected for each available parameter in the upload window, or the file will not be uploaded. If a parameter is not applicable to the file, select "N/A". New values can be added manually by typing them into the dropdown menu if those values are not already present in the list.
+
+In the main program window, the menu next to the label INPUT# should read "1". Use File > Open to pick the Gaussian output file containing the first spectrum to be read. Up to 9 theory files and one experimental file can be graphed at once. Each new theory file after the first one will automatically add and entry to the INPUT# list. Use the Delete Structure button to remove the selected entry in the INPUT# list.
+
+In the INPUT# menu, select Experiment. Use File > Open to select a .csv file containing, on each line, a frequency and intensity value separated by a comma. Alternatively, if no experimental spectrum is desired, the user may deselect the Include Experiment box in the lower left corner of the window. When all of the files to be read have been selected, press the GENERATE PLOT button.
+
+A plot window will come up. In the window, click and drag down and right to zoom in. Dragging up and left will zoom all the way back out.
+
+
+ADVANCED FUNCTIONS:
+
+Scale Intensity:
+Enter a number and press Enter to lock in that number. The window should reflect your entry. A separate intensity scaling value can be added for each structure. The default intensity scaling value is 1.0 for theory spectra. By default, the experimental spectrum is scaled so that its maximum intensity matches the maximum intensity of the theory spectra.
+
+Scale Frequencies:
+The number in the box will be used to scale the frequencies in the theory spectra. The default is 0.956, which is the scale factor for the functional M06-L. Enter a number and press Enter to lock in that number. The window should reflect your entry. A separate frequency scaling value can be added for each structure.
+
+Combine Theory Spectra:
+Checking this box will merge all theory spectra into one spectrum. This method gives a linear combination of the theory spectra, with the intensities of each scaled by the Scale Intensity value for each.
+
+HWHM (/cm):
+This box contains the half width of the broadened theory peaks at half max in wavenumbers. The default value is 4.0. Increasing this value makes peaks broader, and decreases resolution.
+
+Update Definitions:
+This button, located in the download window, updates the program with the list of files currently on the OSF, along with their metadata. Definitions also update automatically when OSF credentials are first entered.
+
+Retrieving Broadened Theory Spectra:
+In consideration of the potential desire of the user to retain their broadened theory spectra, all spectra generated are printed to the working directory as <file_name>.spectrum.csv. The user should be aware, however, that if a new spectrum is generated from the same file, the .spectrum.csv will be overwritten. Note also that if the Combine Theory Spectra box is checked, all spectra will still be written to .csv files, but the combined spectrum will be named after the first theory spectrum. For instance, if File1.out and File2.out are Gaussian frequency output files at INPUT# indices 1 and 2, respectively, and Combine Theory Spectra is checked, File2.spectrum.csv will contain the spectrum from File2.out, but File1.spectrum.csv will contain the combined spectrum.
+
+Housekeeping for Downloaded Files:
+When reading spectra from the database, the files are first downloaded to the working directory, and then are read by the program. Consequently, the user may find that their working directory soon takes up significantly more space than it used to. It is recommended that regular housekeeping of the working directory be implemented to remove unwanted files that have been retrieved from the database.
